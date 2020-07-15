@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
+            agent.isStopped = false;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -30,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 agent.SetDestination(hit.point);
             }
+        }
+
+        if(Input.GetKey(KeyCode.Q))
+        {
+            agent.isStopped = true;
         }
     }
 }
