@@ -9,13 +9,6 @@ public class CameraMovimentation : MonoBehaviour
 
     public bool fixedCamera;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))        
@@ -23,5 +16,11 @@ public class CameraMovimentation : MonoBehaviour
 
         if(fixedCamera)
             transform.position = player.position + offset;
+    }
+
+    public void SetPlayer()
+    {
+        Debug.LogWarning("Done player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }
