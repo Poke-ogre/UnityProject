@@ -20,7 +20,6 @@ public class CameraMovimentation : MonoBehaviour
 
     public void SetPlayer()
     {
-        Debug.LogWarning("Done player");
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

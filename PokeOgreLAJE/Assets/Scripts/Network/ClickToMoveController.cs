@@ -39,7 +39,6 @@ public class ClickToMoveController : EntityEventListener<IPlayerState>
             {
                 
                 gameObject.SendMessage("SetTarget", cmd.Input.click);
-                Debug.Log("sent message");
             }
 
             cmd.Result.position = transform.position;

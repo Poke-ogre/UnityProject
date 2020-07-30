@@ -3,12 +3,28 @@ using UnityEngine;
 using Bolt;
 using Bolt.Matchmaking;
 using UdpKit;
+using TMPro;
+using System.Text.RegularExpressions;
 
-public class Menu : Bolt.GlobalEventListener
+public class Menu : GlobalEventListener
 {
+
+    TextMeshProUGUI room;
+    public string matchName;
+
+    private void Start()
+    {
+        room = GameObject.FindGameObjectWithTag("Room").GetComponent<TextMeshProUGUI>();
+    }
+
     public void StartServer()
     {
-        BoltLauncher.StartServer();
+        matchName = room.text;
+
+        if (matchName != null && matchName != "")
+        {
+            BoltLauncher.StartServer();
+        }
     }
 
     public void StartClient()
@@ -21,8 +37,6 @@ public class Menu : Bolt.GlobalEventListener
         
         if(BoltNetwork.IsServer)
         {
-            string matchName = "Test xoxo";
-
             BoltMatchmaking.CreateSession(sessionID: matchName, sceneToLoad: "Main");
         }
     }
