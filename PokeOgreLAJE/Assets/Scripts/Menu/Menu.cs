@@ -37,7 +37,7 @@ public class Menu : GlobalEventListener
         
         if(BoltNetwork.IsServer)
         {
-            BoltMatchmaking.CreateSession(sessionID: matchName, sceneToLoad: "Main");
+            BoltMatchmaking.CreateSession(sessionID: matchName, sceneToLoad: "DemoScene");
         }
     }
 
