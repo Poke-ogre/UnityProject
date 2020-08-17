@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Server, "DemoScene")]
+[BoltGlobalBehaviour(BoltNetworkModes.Server, "Main")]
 public class GameNetworkCallbacks : Bolt.GlobalEventListener
 {
 
