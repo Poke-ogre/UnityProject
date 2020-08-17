@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickToMoveController : EntityEventListener<IPlayerState>
+public class PlayerNetworkController : EntityEventListener<IPlayerState>
 {
-    public LayerMask mask;
+    private PlayerController playerController;
 
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);
-        state.SetAnimator(gameObject.GetComponentInChildren<Animator>());       
+        state.SetAnimator(gameObject.GetComponentInChildren<Animator>());
+        playerController = gameObject.GetComponent<PlayerController>();
     }
 
 
@@ -19,8 +20,29 @@ public class ClickToMoveController : EntityEventListener<IPlayerState>
         if (Input.GetMouseButtonDown(1))
         {
             IClickToMoveCommandInput input = ClickToMoveCommand.Create();
-            input.click = Click();
-            entity.QueueInput(input);
+            input.click = playerController.Click();
+            if(input.click != Vector3.zero)
+                entity.QueueInput(input);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+
         }
     }
 
@@ -35,26 +57,8 @@ public class ClickToMoveController : EntityEventListener<IPlayerState>
         }
         else
         {
-            if (cmd.Input.click != Vector3.zero)
-            {
-                
-                gameObject.SendMessage("SetTarget", cmd.Input.click);
-            }
-
+            playerController.SetTarget(cmd.Input.click);
             cmd.Result.position = transform.position;
         }
-    }
-
-    private Vector3 Click()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100, mask))
-        {
-            return hit.point;
-        }
-
-        return Vector3.zero;
     }
 }

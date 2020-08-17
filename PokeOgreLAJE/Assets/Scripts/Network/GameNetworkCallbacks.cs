@@ -4,6 +4,9 @@ using UnityEngine;
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "DemoScene")]
 public class GameNetworkCallbacks : Bolt.GlobalEventListener
 {
+
+    public Transform spawn;
+
     [System.Obsolete]
     public override void SceneLoadLocalDone(string scene)
     {
@@ -20,10 +23,8 @@ public class GameNetworkCallbacks : Bolt.GlobalEventListener
 
     private BoltEntity InstantiateEntity()
     {
-        GameObject[] respawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
-
-        var respawn = respawnPoints[Random.Range(0, respawnPoints.Length)];
-        BoltEntity player = BoltNetwork.Instantiate(BoltPrefabs.Player, respawn.transform.position, Quaternion.identity);
+        spawn = GameObject.FindGameObjectWithTag("Spawn").transform;
+        BoltEntity player = BoltNetwork.Instantiate(BoltPrefabs.Player, spawn.position, Quaternion.identity);
         Camera.main.GetComponent<CameraMovimentation>().SetPlayer();
         return player;
     }
