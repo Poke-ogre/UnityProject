@@ -15,10 +15,9 @@ public class SceneTestAutoHost : GlobalEventListener
 
     public override void BoltStartDone()
     {
-
         if (BoltNetwork.IsServer)
         {
-            BoltMatchmaking.CreateSession(sessionID: "", sceneToLoad: scene);
+            BoltMatchmaking.CreateSession(sessionID: "", sceneToLoad: "DemoScene");
         }
     }
 }

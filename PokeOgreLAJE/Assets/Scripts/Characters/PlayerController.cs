@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask mask;
     private GameObject clickFeedback;
 
+    public Vector3 clickPos;
+    public bool castQ, castW, castE, castR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +27,14 @@ public class PlayerController : MonoBehaviour
         float speedPercent = agent.velocity.magnitude / agent.speed;
         anim.SetFloat("playerSpeed", speedPercent);
 
+        if (Input.GetMouseButtonDown(1))
+        {             
+             clickPos = Click();
+        }
+
         if (Input.GetKey(KeyCode.Q))
         {
+            agent.isStopped = true;
             anim.Play("Poke");
         }
         if (Input.GetKey(KeyCode.W))
@@ -38,8 +47,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.R))
         {
+            agent.isStopped = true;
             anim.Play("CharmCast");
         }
+
+        
 
     }
     public Vector3 Click()
@@ -56,6 +68,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return Vector3.zero;
+    }
+
+    public void ResumeAgent()
+    {
+        agent.isStopped = false;
     }
 
     public void SetTarget(Vector3 destination)

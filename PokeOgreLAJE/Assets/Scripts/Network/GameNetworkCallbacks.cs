@@ -1,8 +1,9 @@
 ﻿
 using UnityEngine;
+using Bolt;
 
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "Main", "DemoScene")]
-public class GameNetworkCallbacks : Bolt.GlobalEventListener
+public class GameNetworkCallbacks : GlobalEventListener
 {
 
     public Transform spawn;

@@ -21,7 +21,7 @@ public class Menu : GlobalEventListener
     {
         matchName = room.text;
 
-        if (matchName != null && matchName != "")
+        if (matchName != null)
         {
             BoltLauncher.StartServer();
         }

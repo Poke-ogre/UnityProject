@@ -56,10 +56,11 @@ public class Pooler : MonoBehaviour
         pool.objectList.Enqueue(obj);
     }
 
-    public IEnumerator DestroyToPoolWithTimer(string name, GameObject obj, float time)
+    public void DestroyToPoolWithTimer(string name, GameObject obj, float time)
     {
-        yield return new WaitForSeconds(time);
+        Debug.Log("Destroying!");
         Pool pool = pools.Find(p => p.name == name);
         pool.objectList.Enqueue(obj);
+        //yield return null;
     }
 }

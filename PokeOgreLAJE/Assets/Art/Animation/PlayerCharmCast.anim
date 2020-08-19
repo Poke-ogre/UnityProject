@@ -43194,4 +43194,12 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 2.7
+    functionName: ResumeAgent
+    data: 
+    objectReferenceParameter: {fileID: 8937793519047343162, guid: 3a5e19bf2fe697f45a162de20a956f64,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
