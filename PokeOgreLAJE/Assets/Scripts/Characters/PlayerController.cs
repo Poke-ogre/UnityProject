@@ -5,14 +5,17 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-
     Animator anim;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
+
     public LayerMask mask;
     private GameObject clickFeedback;
 
     public Vector3 clickPos;
     public bool castQ, castW, castE, castR;
+
+    public enum PlayerStates { FREE, CASTING };
+    public PlayerStates playerState = PlayerStates.FREE;
 
     // Start is called before the first frame update
     void Start()
@@ -24,36 +27,55 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speedPercent = agent.velocity.magnitude / agent.speed;
-        anim.SetFloat("playerSpeed", speedPercent);
-
-        if (Input.GetMouseButtonDown(1))
-        {             
-             clickPos = Click();
-        }
-
-        if (Input.GetKey(KeyCode.Q))
+        if(playerState == PlayerStates.FREE)
         {
-            agent.isStopped = true;
-            anim.Play("Poke");
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            anim.Play("SlowCast");
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            anim.Play("Poke");
-        }
-        if (Input.GetKey(KeyCode.R))
-        {
-            agent.isStopped = true;
-            anim.Play("CharmCast");
-        }
+            float speedPercent = agent.velocity.magnitude / agent.speed;
+            anim.SetFloat("playerSpeed", speedPercent);
 
-        
+            if (Input.GetMouseButtonDown(1))
+            {
+                clickPos = Click();
+                if (agent.isStopped)
+                    agent.isStopped = false;
+            }
 
+            if (Input.GetKey(KeyCode.Q))
+            {
+                playerState = PlayerStates.CASTING;
+                anim.SetTrigger("poke");
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                playerState = PlayerStates.CASTING;
+                anim.SetTrigger("throw");
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                playerState = PlayerStates.CASTING;
+                anim.SetTrigger("Poke");
+            }
+            if (Input.GetKey(KeyCode.R))
+            {
+                playerState = PlayerStates.CASTING;
+                anim.SetTrigger("charm");
+            }
+
+            //consmetic interactions
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                anim.Play("Taunt Point");
+            }
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                anim.Play("Taunt Dance");
+            }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+
+            }
+        }
     }
+
     public Vector3 Click()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -68,11 +90,6 @@ public class PlayerController : MonoBehaviour
         }
 
         return Vector3.zero;
-    }
-
-    public void ResumeAgent()
-    {
-        agent.isStopped = false;
     }
 
     public void SetTarget(Vector3 destination)

@@ -58,9 +58,14 @@ public class Pooler : MonoBehaviour
 
     public void DestroyToPoolWithTimer(string name, GameObject obj, float time)
     {
-        Debug.Log("Destroying!");
+        StartCoroutine(TimerDestroy(name, obj, time));
+    }
+
+    private IEnumerator TimerDestroy(string name, GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
         Pool pool = pools.Find(p => p.name == name);
+        obj.SetActive(false);
         pool.objectList.Enqueue(obj);
-        //yield return null;
     }
 }

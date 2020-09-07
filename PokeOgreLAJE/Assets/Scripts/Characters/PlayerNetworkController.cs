@@ -24,26 +24,6 @@ public class PlayerNetworkController : EntityEventListener<IPlayerState>
             entity.QueueInput(input);
             playerController.clickPos = Vector3.zero;
         }
-
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
     }
 
     public override void ExecuteCommand(Command command, bool resetState)
