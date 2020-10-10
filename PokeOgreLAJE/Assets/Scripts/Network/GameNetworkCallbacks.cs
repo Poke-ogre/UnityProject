@@ -26,7 +26,7 @@ public class GameNetworkCallbacks : GlobalEventListener
     {
         spawn = GameObject.FindGameObjectWithTag("Spawn").transform;
         BoltEntity player = BoltNetwork.Instantiate(BoltPrefabs.Player, spawn.position, Quaternion.identity);
-        Camera.main.GetComponent<CameraMovimentation>().SetPlayer();
+        Camera.main.GetComponent<CameraMovimentation>().SetPlayer(player.transform);
         return player;
     }
 }

@@ -40,7 +40,7 @@ public class MenuNetwork : GlobalEventListener
         base.SessionListUpdated(sessionList);
       
         Debug.Log("Sessions count: " + sessionList.Count);
-        float offset = 0;
+        //float offset = 0;
         foreach (var session in sessionList)
         {
             UdpSession matchSession = session.Value as UdpSession;

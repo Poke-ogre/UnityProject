@@ -5,15 +5,15 @@ using UnityEngine.AI;
 
 public class AgentAnimController: MonoBehaviour
 {
-    public PlayerController player;
+    //[SerializeField] private PlayerController player;  
 
-    public void PauseAgent()
-    {
-        player.agent.isStopped = true;
-    }
-    public void ResumeAgent()
-    {
-        player.playerState = PlayerController.PlayerStates.FREE;
-        player.agent.isStopped = false;
-    }
+    //public void PauseAgent()
+    //{
+    //    player.agent.isStopped = true;
+    //}
+    //public void ResumeAgent()
+    //{
+    //    player.playerState = PlayerController.PlayerStates.FREE;
+    //    player.agent.isStopped = false;
+    //}
 }

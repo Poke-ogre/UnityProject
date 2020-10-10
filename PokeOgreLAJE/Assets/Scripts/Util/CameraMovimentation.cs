@@ -11,6 +11,8 @@ public class CameraMovimentation : MonoBehaviour
 
     void Update()
     {
+        if (player == null) 
+            return;
         if(Input.GetKeyDown(KeyCode.Space))        
             fixedCamera = !fixedCamera;        
 
@@ -18,8 +20,8 @@ public class CameraMovimentation : MonoBehaviour
             transform.position = player.position + offset;
     }
 
-    public void SetPlayer()
+    public void SetPlayer(Transform player)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        this.player = player;
     }
 }

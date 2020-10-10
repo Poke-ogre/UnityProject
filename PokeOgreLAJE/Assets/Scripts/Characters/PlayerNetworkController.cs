@@ -17,12 +17,12 @@ public class PlayerNetworkController : EntityEventListener<IPlayerState>
 
     public override void SimulateController()
     {
-        if (playerController.clickPos != Vector3.zero)
+        if (playerController.movePosition != Vector3.zero)
         {
             IClickToMoveCommandInput input = ClickToMoveCommand.Create();
-            input.click = playerController.clickPos;
+            input.click = playerController.movePosition;
             entity.QueueInput(input);
-            playerController.clickPos = Vector3.zero;
+            playerController.movePosition = Vector3.zero;
         }
     }
 
@@ -37,7 +37,8 @@ public class PlayerNetworkController : EntityEventListener<IPlayerState>
         }
         else
         {
-            playerController.SetTarget(cmd.Input.click);
+            FreeState s = (FreeState)playerController.stateMachine.CurrentState;
+            s.SetTarget(cmd.Input.click);
             cmd.Result.position = transform.position;
         }
     }
