@@ -22,8 +22,12 @@ public class PlayerNetworkController : EntityEventListener<IPlayerState>
             IClickToMoveCommandInput input = ClickToMoveCommand.Create();
             input.click = playerController.movePosition;
             entity.QueueInput(input);
-            playerController.movePosition = Vector3.zero;
         }
+    }
+
+    public override void ControlGained()
+    {
+
     }
 
     public override void ExecuteCommand(Command command, bool resetState)
@@ -41,10 +45,5 @@ public class PlayerNetworkController : EntityEventListener<IPlayerState>
             s.SetTarget(cmd.Input.click);
             cmd.Result.position = transform.position;
         }
-    }
-
-    public void doThis(BoltEntity b)
-    {
-
     }
 }

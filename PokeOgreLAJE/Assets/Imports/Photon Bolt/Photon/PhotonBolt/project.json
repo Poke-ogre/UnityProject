@@ -107,6 +107,7 @@
         {
           "Name": "Transform",
           "Enabled": true,
+          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -177,6 +178,7 @@
           },
           "AssetSettings": {
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
+            "SmoothingAlgorithm": 1,
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
@@ -184,7 +186,7 @@
           }
         },
         {
-          "Name": "playerSpeed",
+          "Name": "speed",
           "Enabled": true,
           "Expanded": true,
           "Priority": 1,
@@ -227,7 +229,7 @@
           }
         },
         {
-          "Name": "slow",
+          "Name": "throw",
           "Enabled": true,
           "Expanded": true,
           "Priority": 1,
@@ -245,6 +247,40 @@
         },
         {
           "Name": "charm",
+          "Enabled": true,
+          "Expanded": true,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeTrigger, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
+            "ExtrapolationErrorTolerance": 0.25,
+            "_ExtrapolationCorrectionFrames": 6,
+            "ExtrapolationMaxFrames": 9,
+            "MecanimMode": 1,
+            "SnapMagnitude": 10.0
+          }
+        },
+        {
+          "Name": "tauntPoint",
+          "Enabled": true,
+          "Expanded": true,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeTrigger, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
+            "ExtrapolationErrorTolerance": 0.25,
+            "_ExtrapolationCorrectionFrames": 6,
+            "ExtrapolationMaxFrames": 9,
+            "MecanimMode": 1,
+            "SnapMagnitude": 10.0
+          }
+        },
+        {
+          "Name": "tauntDance",
           "Enabled": true,
           "Expanded": true,
           "Priority": 1,

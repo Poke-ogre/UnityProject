@@ -55,6 +55,6 @@ public class PlayerController : MonoBehaviour
         stateMachine.OnSkillFinish();
         skillQueue.Dequeue();
         if(skillQueue.Count > 0)        
-            skillQueue.Peek().skillCooldown.CastSkill();        
+            skillQueue.Peek().skillCooldown.CastSkill(); 
     }
 }

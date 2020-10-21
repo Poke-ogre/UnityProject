@@ -14,8 +14,6 @@ public class Roll : Skill
         //skillCooldown.Initialize(this);
     }
 
-    public override void CastSkill()
-    {
-        playerController.StartCoroutine(playerController.WaitToDequeueSkill(animation.length));
-    }
+    public override void CastSkill() => playerController.StartCoroutine(playerController.WaitToDequeueSkill(animation.length));
+    
 }
