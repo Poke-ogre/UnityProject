@@ -7,6 +7,7 @@ using Bolt.Matchmaking;
 public class SceneTestAutoHost : GlobalEventListener
 {
     public string scene;
+    public bool goToDemoScene = false;
     public void Start()
     {
         // BoltLauncher.Shutdown();
@@ -17,7 +18,7 @@ public class SceneTestAutoHost : GlobalEventListener
     {
         if (BoltNetwork.IsServer)
         {
-            BoltMatchmaking.CreateSession(sessionID: "", sceneToLoad: "DemoScene");
+            BoltMatchmaking.CreateSession(sessionID: "", sceneToLoad: (goToDemoScene?"DemoScene":scene));
         }
     }
 }
